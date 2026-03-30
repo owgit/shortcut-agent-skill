@@ -1,12 +1,27 @@
 # Shortcut Agent Skill
 
-A Claude Code skill that generates Apple Shortcuts from natural language. Describe what you want to automate, and get a signed `.shortcut` file ready to install on your iPhone, iPad, or Mac.
+Generate Apple Shortcuts from natural language using AI. Describe what you want to automate, and get a signed `.shortcut` file ready to install on your iPhone, iPad, or Mac.
+
+Works with **Claude Code**, **Cursor**, and **OpenAI Codex**.
 
 ## Requirements
 
 - **macOS** (required for the `shortcuts sign` CLI tool)
-- **Claude Code** ([install guide](https://docs.anthropic.com/en/docs/claude-code/overview))
 - **Python 3** (for plist validation)
+- One of the following AI coding tools:
+  - [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview)
+  - [Cursor](https://cursor.sh)
+  - [OpenAI Codex](https://openai.com/codex)
+
+## Supported AI Tools
+
+| Tool | Config File | How It Works |
+|------|-------------|--------------|
+| **Claude Code** | `.claude/skills/shortcut-agent/SKILL.md` | Auto-detected as a skill. Use `/shortcut "..."` |
+| **Cursor** | `.cursorrules` | Auto-loaded on project open. Ask naturally |
+| **OpenAI Codex** | `AGENTS.md` | Auto-loaded on project open. Ask naturally |
+
+All three tools share the same reference files in `.claude/skills/shortcut-agent/references/` for action identifiers, plist format, and CLI usage.
 
 ## Installation
 
@@ -17,13 +32,19 @@ git clone https://github.com/owgit/shortcut-agent-skill.git
 cd shortcut-agent-skill
 ```
 
-### Step 2: Open the project in Claude Code
+### Step 2: Open the project in your AI tool
 
+**Claude Code:**
 ```bash
 claude
 ```
+Claude Code automatically detects the skill from `.claude/skills/shortcut-agent/SKILL.md`.
 
-That's it. Claude Code automatically detects the skill from `.claude/skills/shortcut-agent/SKILL.md`.
+**Cursor:**
+Open the project folder in Cursor. It automatically reads `.cursorrules` for shortcut generation instructions.
+
+**OpenAI Codex:**
+Open the project folder. Codex reads `AGENTS.md` for shortcut generation instructions.
 
 ### Alternative: Add to an existing project
 
@@ -50,13 +71,17 @@ mkdir -p output
 
 ### Step 3: Verify it works
 
-Open Claude Code in the project directory and type:
-
+**Claude Code:**
 ```
 /shortcut "Show a notification that says Hello World"
 ```
 
-Claude should generate a `.shortcut` file, sign it, and open it in the Shortcuts app.
+**Cursor / Codex:**
+```
+Create a shortcut that shows a notification saying Hello World
+```
+
+The AI generates a `.shortcut` file, signs it, and opens it in the Shortcuts app.
 
 ## Usage
 
@@ -128,11 +153,14 @@ The shortcut opens in the Shortcuts app. Click "Add Shortcut" to install it.
 ```
 shortcut-agent-skill/
 ├── .claude/skills/shortcut-agent/
-│   ├── SKILL.md                        # Skill definition (Claude reads this)
+│   ├── SKILL.md                        # Skill definition (Claude Code)
 │   └── references/
 │       ├── actions.md                  # 100+ action identifiers & parameters
 │       ├── plist-format.md             # Plist XML spec, variables, control flow
 │       └── url-schemes-and-cli.md      # URL schemes, CLI, automation triggers
+├── .cursorrules                        # Cursor AI instructions
+├── AGENTS.md                           # OpenAI Codex instructions
+├── CLAUDE.md                           # Claude Code project context
 ├── scripts/
 │   ├── generate_plist.py               # Plist validation helper
 │   └── sign_and_open.sh               # Sign shortcut + open in Shortcuts app
@@ -141,7 +169,6 @@ shortcut-agent-skill/
 │   ├── ask_and_notify.plist            # Input + notification
 │   └── api_call.plist                  # HTTP + JSON parsing
 ├── output/                             # Generated files (gitignored)
-├── CLAUDE.md                           # Project context for Claude Code
 ├── README.md                           # This file
 └── LICENSE                             # MIT
 ```
