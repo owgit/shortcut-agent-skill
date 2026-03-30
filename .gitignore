@@ -1,0 +1,6 @@
+output/*.shortcut
+output/*.plist
+output/*_unsigned.*
+__pycache__/
+*.pyc
+.DS_Store
