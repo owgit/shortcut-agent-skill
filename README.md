@@ -1,8 +1,26 @@
+<div align="center">
+
 # Shortcut Agent Skill
 
-Generate Apple Shortcuts from natural language using AI. Describe what you want to automate, and get a signed `.shortcut` file ready to install on your iPhone, iPad, or Mac.
+### AI-Powered Apple Shortcuts Generator
 
-Works with **Claude Code**, **Cursor**, and **OpenAI Codex**.
+Describe what you want to automate in plain language.
+Get a signed `.shortcut` file ready to install on your iPhone, iPad, or Mac.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Platform: macOS](https://img.shields.io/badge/Platform-macOS-black?logo=apple&logoColor=white)](https://support.apple.com/shortcuts)
+[![Actions: 427+](https://img.shields.io/badge/Actions-427%2B-orange)](.claude/skills/shortcut-agent/references/actions.md)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/uygarduzgun)
+
+**Works with** &nbsp; [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) &nbsp;|&nbsp; [Cursor](https://cursor.sh) &nbsp;|&nbsp; [OpenAI Codex](https://openai.com/codex)
+
+---
+
+```
+/shortcut "Check my battery and warn me if it's below 20%"
+```
+
+</div>
 
 ## Requirements
 
