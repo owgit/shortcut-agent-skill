@@ -218,6 +218,18 @@ shortcuts run "Shortcut Name"
 3. Improve action coverage in `.claude/skills/shortcut-agent/references/actions.md`
 4. Submit a PR
 
+## Support
+
+If you find this useful, consider buying me a coffee:
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/uygarduzgun)
+
+## Author
+
+- Website: [uygarduzgun.com](https://uygarduzgun.com)
+- GitHub: [owgit](https://github.com/owgit)
+- Support: [Buy Me a Coffee](https://buymeacoffee.com/uygarduzgun)
+
 ## License
 
 MIT
