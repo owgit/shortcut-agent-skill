@@ -131,13 +131,16 @@ After adding the shortcut on your Mac, it **syncs automatically** via iCloud to 
 
 ## Examples
 
-The `examples/` folder contains ready-made shortcuts you can install immediately:
+The `examples/` folder contains ready-made shortcut templates. Some examples have extra requirements, noted below:
 
-| File | Description | Actions tested |
+| File | Description | Actions used |
 |------|-------------|---------------|
 | `hello_world.plist` | Shows "Hello World" | Text, Show Result, variable reference |
 | `ask_and_notify.plist` | Asks your name, sends notification | Ask, Set Variable, Notification |
 | `api_call.plist` | Fetches a URL, parses JSON, shows result | URL, HTTP GET, Dictionary, Show Result |
+| `kilobat_host_check.plist` | Checks a hostname with Kilobat CLI on macOS | Ask for Input, Run Shell Script, Show Result |
+
+**Kilobat host-check requirements:** macOS 14 or later; [Kilobat CLI](https://github.com/seifip/kilobat-cli) installed with Homebrew; and **Allow Running Scripts** enabled in Shortcuts settings. The Homebrew source build requires Xcode 16 or later. This example sends a diagnostic check to the hostname you enter. The CLI is GPL-3.0-only; the separate Kilobat desktop app is proprietary.
 
 ### Install an example
 

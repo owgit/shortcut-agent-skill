@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>WFQuickActionSurfaces</key>
+	<array/>
+	<key>WFWorkflowActions</key>
+	<array>
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.ask</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>UUID</key>
+				<string>5B76DCF4-57B6-446C-A080-042C92202DD0</string>
+				<key>WFAllowsMultilineText</key>
+				<false/>
+				<key>WFAskActionDefaultAnswer</key>
+				<string>example.com</string>
+				<key>WFAskActionPrompt</key>
+				<string>Which site? Enter a hostname such as example.com.</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.runshellscript</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>Input</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>OutputName</key>
+						<string>Provided Input</string>
+						<key>OutputUUID</key>
+						<string>5B76DCF4-57B6-446C-A080-042C92202DD0</string>
+						<key>Type</key>
+						<string>ActionOutput</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenAttachment</string>
+				</dict>
+				<key>InputMode</key>
+				<string>as arguments</string>
+				<key>Script</key>
+				<string>#!/bin/sh
+# Shortcuts: pass Ask for Input to this action as arguments.
+# Requires macOS 14+ and Kilobat CLI installed with Homebrew.
+for kilobat_cli in /opt/homebrew/bin/kilobat /usr/local/bin/kilobat; do
+    [ -x "$kilobat_cli" ] &amp;&amp; break
+done
+if [ ! -x "$kilobat_cli" ]; then
+    printf '%s\n' 'Install Kilobat CLI with Homebrew first. See https://kilobat.app.'
+    exit 0
+fi
+if [ -z "$1" ]; then
+    printf '%s\n' 'Enter a hostname such as example.com.'
+    exit 0
+fi
+kilobat_report=$("$kilobat_cli" why "$1" --json 2&gt;/dev/null) || :
+kilobat_answer=$(printf '%s' "$kilobat_report" | /usr/bin/plutil -extract ok raw -o - - 2&gt;/dev/null) || kilobat_answer=unknown
+case "$kilobat_answer" in
+    true) printf '%s\n' 'The connection check passed from this Mac.' ;;
+    false) printf '%s\n' 'The connection check found a problem. Run kilobat why with the same site in Terminal for details.' ;;
+    *) printf '%s\n' 'The check could not run. Check the hostname and your Kilobat CLI installation.' ;;
+esac
+</string>
+				<key>Shell</key>
+				<string>/bin/sh</string>
+				<key>UUID</key>
+				<string>B1F46D4E-EA6C-4215-96DB-D58F213E7F35</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.showresult</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>Text</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>attachmentsByRange</key>
+						<dict>
+							<key>{0, 1}</key>
+							<dict>
+								<key>OutputName</key>
+								<string>Shell Script Result</string>
+								<key>OutputUUID</key>
+								<string>B1F46D4E-EA6C-4215-96DB-D58F213E7F35</string>
+								<key>Type</key>
+								<string>ActionOutput</string>
+							</dict>
+						</dict>
+						<key>string</key>
+						<string>￼</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenString</string>
+				</dict>
+			</dict>
+		</dict>
+	</array>
+	<key>WFWorkflowClientVersion</key>
+	<string>5114.0.6.204</string>
+	<key>WFWorkflowHasOutputFallback</key>
+	<false/>
+	<key>WFWorkflowHasShortcutInputVariables</key>
+	<false/>
+	<key>WFWorkflowIcon</key>
+	<dict>
+		<key>WFWorkflowIconGlyphNumber</key>
+		<integer>61440</integer>
+		<key>WFWorkflowIconStartColor</key>
+		<integer>-1263359489</integer>
+	</dict>
+	<key>WFWorkflowImportQuestions</key>
+	<array/>
+	<key>WFWorkflowInputContentItemClasses</key>
+	<array>
+		<string>WFAppContentItem</string>
+		<string>WFAppStoreAppContentItem</string>
+		<string>WFArticleContentItem</string>
+		<string>WFContactContentItem</string>
+		<string>WFDateContentItem</string>
+		<string>WFEmailAddressContentItem</string>
+		<string>WFFolderContentItem</string>
+		<string>WFGenericFileContentItem</string>
+		<string>WFImageContentItem</string>
+		<string>WFiTunesProductContentItem</string>
+		<string>WFLocationContentItem</string>
+		<string>WFDCMapsLinkContentItem</string>
+		<string>WFAVAssetContentItem</string>
+		<string>WFPDFContentItem</string>
+		<string>WFPhoneNumberContentItem</string>
+		<string>WFRichTextContentItem</string>
+		<string>WFSafariWebPageContentItem</string>
+		<string>WFStringContentItem</string>
+		<string>WFURLContentItem</string>
+	</array>
+	<key>WFWorkflowMinimumClientVersion</key>
+	<integer>900</integer>
+	<key>WFWorkflowMinimumClientVersionString</key>
+	<string>900</string>
+	<key>WFWorkflowOutputContentItemClasses</key>
+	<array/>
+	<key>WFWorkflowTypes</key>
+	<array>
+		<string>WFWorkflowTypeShowInSearch</string>
+	</array>
+</dict>
+</plist>
